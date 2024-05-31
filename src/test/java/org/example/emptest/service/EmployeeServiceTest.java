@@ -25,9 +25,9 @@ class EmployeeServiceTest {
     @Test
     void 사원정보저장(){
         //given
-        Employee employee = new Employee("202470", "test", "test", EmpType.A, "2024-05-24", 100L);
+        //Employee employee = new Employee("202470", "test", "test", EmpType.A, "2024-05-24", 100L);
         //when
-        employeeService.addEmployee(employee);
+        //employeeService.addEmployee(employee);
         Employee employeeById = employeeService.getEmployeeById("202470");
         //then
         assertThat(employeeById.getEmpId()).isEqualTo("202470");

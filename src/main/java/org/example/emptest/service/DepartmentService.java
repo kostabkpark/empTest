@@ -14,6 +14,9 @@ import java.util.List;
 public class DepartmentService {
     private final DepartmentRepository departmentRepository;
 
+    public List<Department> getAllDepartments() {
+        return departmentRepository.findAll();
+    }
     public Department getDepartment(int deptId) {
         return departmentRepository.findById(deptId).get();
     }

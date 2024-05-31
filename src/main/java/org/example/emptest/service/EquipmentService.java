@@ -6,6 +6,8 @@ import org.example.emptest.repository.EquipmentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -18,5 +20,9 @@ public class EquipmentService {
 
     public Equipment addEquipment(Equipment equipment) {
         return equipmentRepository.save(equipment);
+    }
+
+    public List<Equipment> getAvailableEquipments() {
+        return equipmentRepository.findAllByEmployeeIsNull();
     }
 }

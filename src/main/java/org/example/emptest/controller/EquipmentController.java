@@ -1,6 +1,7 @@
 package org.example.emptest.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.emptest.entity.Employee;
 import org.example.emptest.entity.Equipment;
 import org.example.emptest.service.EquipmentService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,8 @@ public class EquipmentController {
     }
 
     @GetMapping("/equipment/add")
-    public String addEquipment() {
+    public String addEquipment(Model model) {
+        model.addAttribute(new Equipment());
         return "equipment/equipmentAdd";
     }
 

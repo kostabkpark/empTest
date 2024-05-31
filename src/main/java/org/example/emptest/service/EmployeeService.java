@@ -39,7 +39,7 @@ public class EmployeeService {
     @Transactional
     public Employee addEmployee(EmployeeCreateDto employeeDto) {
         // 입력받은 장비가 이미 존재하고 , 사원에 할당되어 있지 않은 경우 진행 가능
-        // 사원에게 배정되지 않은 장비가 먼저 존재해야 할당할 수 있음, 부서가 이미
+        // 사원에게 배정되지 않은 장비가 먼저 존재해야 할당할 수 있음, 부서가 이미 등록되어 있어야 부서입력 가능
         // 장비가 없으면 장비를 먼저 등록해야 함
         // 두 연관관계의 주인이 모두 사원이 되어야 함.
 //        Equipment bySeqno = equipmentRepository.findBySeqno(employeeDto.getSeqno());

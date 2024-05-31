@@ -19,11 +19,22 @@ public class EquipmentService {
     }
 
     @Transactional
-    public Equipment addEquipment(Equipment equipment) {
-        return equipmentRepository.save(equipment);
+    public Equipment addEquipment(Equipment equipment) throws Exception{
+        if(validateEquipment(equipment.getSeqno())) {
+            equipment = equipmentRepository.save(equipment);
+        } else
+            throw new Exception("동일한 장비번호가 존재함");
+        return equipment;
     }
 
     public List<Equipment> getAvailableEquipments() {
         return equipmentRepository.findAllByEmployeeIsNull();
+    }
+
+    public boolean validateEquipment(String seqno) {
+        if(equipmentRepository.findBySeqno(seqno) == null)
+            return true; // 새로운 장비
+        else
+            return false; // 이미 동일한 장비번호가 존재하는 경우
     }
 }

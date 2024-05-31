@@ -9,43 +9,55 @@
 <!--   <p th:text="${name}"></p>-->
    <hr>
    <form th:action="@{/employee/add}" method="post" th:object="${employee}">
-       <p>
-           <label for="empName">이름</label>
-           <input type="text" th:field="*{empName}" placeholder="이름을 입력하세요">
-       </p>
-       <p>
-           <label for="deptId">부서코드</label>
-           <select th:field="*{deptId}">
-               <option value="0">부서코드를 선택해주세요</option>
-               <option th:each="dept:${deptList}" th:value="${dept.deptId}"
-                       th:text="${dept.deptName}"></option>
-           </select>
-       </p>
-       <p>
-           <label for="empType">사원구분코드</label>
-           <select th:field="*{empType}">
-               <option value="">사원구분코드를 선택해주세요</option>
-               <option th:each="type:${empTypes}" th:value="${type}"
-                       th:text="${type.getDescription()}"></option>
-           </select>
-       </p>
-       <p>
-           <label for="joinDate">입사일자</label>
-           <input type="date" th:field="*{joinDate}" placeholder="입사일자를 입력하세요">
-       </p>
-       <p>
-           <label for="salary">연봉</label>
-           <input type="number" step="100" th:field="*{salary}" placeholder="급여를 입력하세요">
-       </p>
-       <p>
-           <label for="seqno">장비일련번호</label>
-           <select th:field="*{seqno}">
-               <option value="">장비일련번호 선택</option>
-               <option th:each="eqmt:${eqmtList}" th:value="${eqmt.seqno}"
-                       th:text="${eqmt.seqno}"></option>
-           </select>
-       </p>
-       <button type="submit">저장</button>
+       <table>
+           <tr>
+               <td><label for="empId">사번</label></td>
+               <td><input type="text" th:field="*{empId}" placeholder="사번을 입력하세요"></td>
+           </tr>
+           <tr>
+               <td><label for="empName">이름</label></td>
+               <td><input type="text" th:field="*{empName}" placeholder="이름을 입력하세요"></td>
+           </tr>
+           <tr>
+               <td><label for="deptId">부서코드</label></td>
+               <td><select th:field="*{deptId}">
+                   <option value="0">부서코드를 선택해주세요</option>
+                   <option th:each="dept:${deptList}" th:value="${dept.deptId}"
+                           th:text="${dept.deptName}"></option>
+               </select></td>
+           </tr>
+           <tr>
+               <td><label for="empType">사원구분코드</label>
+               </td>
+               <td><select th:field="*{empType}">
+                   <option value="">사원구분코드를 선택해주세요</option>
+                   <option th:each="type:${empTypes}" th:value="${type}"
+                           th:text="${type.getDescription()}"></option>
+               </select></td>
+           </tr>
+           <tr>
+               <td><label for="joinDate">입사일자</label>
+               </td>
+               <td><input type="date" th:field="*{joinDate}" placeholder="입사일자를 입력하세요"></td>
+           </tr>
+           <tr>
+               <td> <label for="salary">연봉</label>
+               </td>
+               <td><input type="number" step="100" th:field="*{salary}" placeholder="급여를 입력하세요"></td>
+           </tr>
+           <tr>
+               <td><label for="seqno">장비일련번호</label></td>
+               <td>
+                   <select th:field="*{seqno}">
+                       <option value="">장비일련번호 선택</option>
+                       <option th:each="eqmt:${eqmtList}" th:value="${eqmt.seqno}"
+                               th:text="${eqmt.seqno}"></option>
+                   </select>
+               </td>
+               <td><button type="submit">저장</button></td>
+           </tr>
+       </table>
+
    </form>
    <hr>
    <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>

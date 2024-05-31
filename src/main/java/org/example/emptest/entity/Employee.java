@@ -33,25 +33,20 @@ public class Employee {
             EmployeeCreateDto employeeDto,
             Department department,
             Equipment equipment){
-
-        // 입력받은 장비가 이미 존재하고 , 사원에 할당되어 있지 않은 경우 진행 가능
-        // 사원에게 배정되지 않은 장비가 먼저 존재해야 할당할 수 있음
-        // 장비가 없으면 장비를 먼저 등록해야 함
         // 두 연관관계의 주인이 모두 사원이 되어야 함.
-//        Equipment bySeqno = equipmentRepository.findBySeqno(employeeDto.getSeqno());
-//        if(bySeqno == null || bySeqno.getEmployee() != null) {
-//
-//
-//        }
-
+        // 장비가 없으면 장비를 먼저 등록해야 함
+        // 등록된 장비 중 사원에 할당되어 있지 않은 장비를 찾아서 사원에게 할당할 수 있음
         Employee employee = new Employee();
+        employee.setEmpId(employeeDto.getEmpId());
         employee.setDepartment(department);
         employee.setEquipment(equipment);
-
         employee.setEmpName(employeeDto.getEmpName());
         employee.setEmpType(employeeDto.getEmpType());
         employee.setSalary(employeeDto.getSalary());
         employee.setJoinDate(employeeDto.getJoinDate());
+
+        equipment.setEmployee(employee);
+
         return employee;
     }
 }

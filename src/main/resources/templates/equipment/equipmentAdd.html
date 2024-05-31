@@ -9,15 +9,18 @@
 <!--   <p th:text="${name}"></p>-->
    <hr>
    <form th:action="@{/equipment/add}" method="post" th:object="${equipment}">
-       <p>
-           <label for="seqno">장비일련번호</label>
-           <input type="text" th:field="*{seqno}" placeholder="장비일련번호를 입력하세요">
-       </p>
-       <p>
-           <label for="cost">장비가격</label>
-           <input type="number" step="10" th:field="*{cost}" placeholder="장비가격을 입력하세요">
-       </p>
-       <button type="submit">저장</button>
+       <table>
+           <tr>
+               <td><label for="seqno">장비일련번호</label></td>
+               <td><input type="text" th:field="*{seqno}" placeholder="장비일련번호를 입력하세요"></td>
+               <td></td>
+           </tr>
+           <tr>
+               <td><label for="cost">장비가격</label></td>
+               <td><input type="number" step="10" th:field="*{cost}" placeholder="장비가격을 입력하세요"></td>
+               <td><button type="submit">저장</button></td>
+           </tr>
+       </table>
    </form>
    <hr>
    <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>

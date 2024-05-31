@@ -7,6 +7,7 @@ import org.example.emptest.service.EquipmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,8 +28,18 @@ public class EquipmentController {
     }
 
     @PostMapping("/equipment/add")
-    public String addEquipment(@ModelAttribute Equipment equipment) {
-        equipmentService.addEquipment(equipment);
-        return "redirect:/";
+    public String addEquipment(@ModelAttribute Equipment equipment,
+                               RedirectAttributes redirectAttr) {
+        String msg = "";
+        try {
+            equipmentService.addEquipment(equipment);
+            //msg = "정상적으로 등록되었습니다.";
+            redirectAttr.addFlashAttribute("status", true);
+            return "redirect:/";
+        } catch (Exception e) {
+            //msg = e.getMessage();
+            redirectAttr.addAttribute("status", true);
+            return "redirect:/error";
+        }
     }
 }

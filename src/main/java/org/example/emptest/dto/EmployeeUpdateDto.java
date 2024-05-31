@@ -10,5 +10,5 @@ public class EmployeeUpdateDto {
     private String empId;
     private int deptId;
     private int salary;
-    private int id;
+    private int equipId;
 }

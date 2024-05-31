@@ -5,9 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-   <h1>메인화면</h1>
+   <h1>오류 발생</h1>
    <hr>
-    <p th:text="${msg}"></p>
+    <p th:if="${param.status}" th:text="'오류가 발생했습니다.'"></p>
+    <button th:onclick="|location.href='@{/}'|">메인</button>
     <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
 </body>
 </html>

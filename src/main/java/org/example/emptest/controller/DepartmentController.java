@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class DepartmentController {
     private final DepartmentService departmentService;
 
-    @GetMapping("/departments/add")
+    @GetMapping("/department/add")
     public String addDepartment() {
-
         return "department/departmentAdd";
     }
 

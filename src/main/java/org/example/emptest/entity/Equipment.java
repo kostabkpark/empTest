@@ -14,11 +14,10 @@ import lombok.Setter;
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int equipId;
     @Column(unique = true, length = 10)
     private String seqno;
     private int cost;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="emp_id")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "equipment")
     private Employee employee;
 }

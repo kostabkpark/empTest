@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>부서정보 등록</h1>
+<!--   <p th:text="${name}"></p>-->
+   <hr>
+   <form th:action="@{/department/add}" method="post">
+       <p>
+           <label for="deptName">부서명</label>
+           <input type="text" th:value="${deptName}" name="deptName" id="deptName"
+                  placeholder="부서명을 입력하세요">
+       </p>
+       <button type="submit">저장</button>
+   </form>
+   <hr>
+   <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+</body>
+</html>

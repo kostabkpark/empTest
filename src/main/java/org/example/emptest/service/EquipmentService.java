@@ -18,6 +18,7 @@ public class EquipmentService {
         return equipmentRepository.findById(id).get();
     }
 
+    @Transactional
     public Equipment addEquipment(Equipment equipment) {
         return equipmentRepository.save(equipment);
     }

@@ -25,7 +25,8 @@ public class Employee {
     @Column(name="join_date", length=10)
     private String joinDate;
     private long salary;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="equipId")
     private Equipment equipment;
 
     public static Employee createEmployee(

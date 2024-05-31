@@ -22,7 +22,7 @@ public class EquipmentController {
 
     @GetMapping("/equipment/add")
     public String addEquipment(Model model) {
-        model.addAttribute(new Equipment());
+        model.addAttribute("equipment",new Equipment());
         return "equipment/equipmentAdd";
     }
 

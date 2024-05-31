@@ -1,0 +1,7 @@
+package org.example.emptest.repository;
+
+import org.example.emptest.entity.Equipment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
+}

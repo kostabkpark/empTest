@@ -18,6 +18,7 @@ public class Equipment {
     @Column(unique = true, length = 10)
     private String seqno;
     private int cost;
+    // 양방향 일대일 관계 설정
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "equipment")
     private Employee employee;
 }

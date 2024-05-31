@@ -25,6 +25,7 @@ public class Employee {
     @Column(name="join_date", length=10)
     private String joinDate;
     private long salary;
+    // 양방향 일대일 관계 설정
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="equipId")
     private Equipment equipment;
@@ -39,12 +40,13 @@ public class Employee {
         Employee employee = new Employee();
         employee.setEmpId(employeeDto.getEmpId());
         employee.setDepartment(department);
+        // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 1
         employee.setEquipment(equipment);
         employee.setEmpName(employeeDto.getEmpName());
         employee.setEmpType(employeeDto.getEmpType());
         employee.setSalary(employeeDto.getSalary());
         employee.setJoinDate(employeeDto.getJoinDate());
-
+        // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 2
         equipment.setEmployee(employee);
 
         return employee;

@@ -51,4 +51,20 @@ public class Employee {
 
         return employee;
     }
+
+    public void changeEquipment(Equipment equipment){
+        // 기존 장비 - available
+        Equipment beforeEq = this.equipment;
+        beforeEq.setEmployee(null);
+        // 사원정보에 새로 받은 장비의 정보를 입력
+        this.equipment = equipment;
+        // 신규 장비 - 사원 정보
+        equipment.setEmployee(this);
+    }
+
+    public void retireProcess(){
+        this.getEquipment().setEmployee(null);
+        this.setEquipment(null);
+        this.setEmpType(EmpType.D);
+    }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.emptest.dto.EmployeeCreateDto;
 import org.example.emptest.dto.EmployeeInquiryDto;
 import org.example.emptest.dto.EmployeeUpdateDto;
+import org.example.emptest.entity.Department;
 import org.example.emptest.entity.EmpType;
 import org.example.emptest.entity.Employee;
 import org.example.emptest.entity.Equipment;
@@ -59,5 +60,17 @@ public class EmployeeService {
         //employee.setDepartment(employeeDto.getDepartment());
         Employee updateEmployee = employeeRepository.save(employee);
         return updateEmployee;
+    }
+
+    @Transactional
+    public void changeEquipment(String empId, Equipment equipment) {
+        Employee employee = employeeRepository.findById(empId).get();
+        employee.changeEquipment(equipment);
+    }
+
+    @Transactional
+    public void retireProcess(String empId) {
+        Employee employee = employeeRepository.findById(empId).get();
+        employee.retireProcess();
     }
 }

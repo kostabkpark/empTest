@@ -5,7 +5,8 @@ import lombok.Getter;
 public enum EmpType {
     A("사원"),
     B("임원"),
-    C("관리자");
+    C("관리자"),
+    D("퇴사자");
 
     @Getter
     private final String description;

@@ -10,39 +10,39 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class JPAEmployeeRepository implements EmployeeRepository{
+//@Repository
+//public class JPAEmployeeRepository implements EmployeeRepository{
 //    @Autowired
 //    EntityManager em;
-
-    @PersistenceContext
-    EntityManager em;
-
-    @Autowired
-    public JPAEmployeeRepository(EntityManager em) {
-        this.em = em;
-    }
-
-    @Override
-    public List<Employee> findAll() {
-        List<Employee> empList = em.createQuery("select e from Employee e", Employee.class).getResultList();
-        return empList;
-    }
-
-    @Override
-    public Optional<Employee> findById(String empId) {
-        Employee employee = em.find(Employee.class, empId);
-        return Optional.ofNullable(employee);
-    }
-
-    @Override
-    public Employee save(Employee employee) {
-        em.persist(employee);
-        return em.find(Employee.class, employee.getEmpId());
-    }
-
-    @Override
-    public void deleteById(String empId) {
-        em.remove(em.find(Employee.class, empId));
-    }
-}
+//
+//    @PersistenceContext
+//    EntityManager em;
+//
+//    @Autowired
+//    public JPAEmployeeRepository(EntityManager em) {
+//        this.em = em;
+//    }
+//
+//    @Override
+//    public List<Employee> findAll() {
+//        List<Employee> empList = em.createQuery("select e from Employee e", Employee.class).getResultList();
+//        return empList;
+//    }
+//
+//    @Override
+//    public Optional<Employee> findById(String empId) {
+//        Employee employee = em.find(Employee.class, empId);
+//        return Optional.ofNullable(employee);
+//    }
+//
+//    @Override
+//    public Employee save(Employee employee) {
+//        em.persist(employee);
+//        return em.find(Employee.class, employee.getEmpId());
+//    }
+//
+//    @Override
+//    public void deleteById(String empId) {
+//        em.remove(em.find(Employee.class, empId));
+//    }
+//}

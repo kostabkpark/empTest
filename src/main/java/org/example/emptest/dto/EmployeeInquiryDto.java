@@ -1,5 +1,6 @@
 package org.example.emptest.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  * EmpoyeeInquiryDto는 일반 사용자가 조회할 수 있는 정보이다.
  */
 @Data
+@AllArgsConstructor
 public class EmployeeInquiryDto {
     private String empName;
     private String deptName;

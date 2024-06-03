@@ -54,9 +54,23 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/employees/{empId}")
-    public void deleteEmployee(@PathVariable String empId) {
-        employeeService.deleteEmployeeById(empId);
+//    @DeleteMapping("/employees/{empId}")
+//    public void deleteEmployee(@PathVariable String empId) {
+//        employeeService.deleteEmployeeById(empId);
+//    }
+
+    @GetMapping("/employee/update/{empId}")
+    public String empEquipmentChange(@PathVariable("empId") String empId, Model model) {
+        Employee employee = employeeService.getEmployeeById(empId);
+
+        EmployeeInquiryDto employeeDto =
+                new EmployeeInquiryDto(employee.getEmpName(),
+                                       employee.getDepartment().getDeptName(),
+                                       employee.getEquipment().getSeqno());
+
+        model.addAttribute("employee", employeeDto);
+        model.addAttribute("eqmtList", equipmentService.getAvailableEquipments());
+        return "employee/employeeUpdate";
     }
 
     @PutMapping("/employees/{empId}")
@@ -64,4 +78,6 @@ public class EmployeeController {
         Employee employee = employeeService.updateEmployee(employeeDto);
         return employee;
     }
+
+
 }

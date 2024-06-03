@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>사원-장비 변경</h1>
+<!--   <p th:text="${name}"></p>-->
+   <hr>
+   <form th:action method="post" th:object="${employee}">
+       <table>
+           <tr>
+               <td><label for="empName">이름</label></td>
+               <td><input type="text" th:field="*{empName}" readonly></td>
+           </tr>
+           <tr>
+               <td><label for="deptName">부서명</label></td>
+               <td><input type="text" th:field="*{deptName}" readonly></td>
+           </tr>
+           <tr>
+               <td><label for="seqno">장비일련번호</label></td>
+               <td>
+                   <select th:field="*{seqno}">
+                       <option value="">장비일련번호 선택</option>
+                       <option th:each="eqmt:${eqmtList}" th:value="${eqmt.seqno}"
+                               th:text="${eqmt.seqno}"></option>
+                   </select>
+               </td>
+               <td><button type="submit">장비 변경</button></td>
+           </tr>
+       </table>
+
+   </form>
+   <hr>
+   <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+</body>
+</html>

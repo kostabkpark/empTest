@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.example.emptest.entity.EmpType;
 import org.example.emptest.entity.Employee;
 import org.example.emptest.repository.EmployeeRepository;
-import org.example.emptest.repository.JPAEmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +27,7 @@ class EmployeeServiceTest {
         //Employee employee = new Employee("202470", "test", "test", EmpType.A, "2024-05-24", 100L);
         //when
         //employeeService.addEmployee(employee);
-        Employee employeeById = employeeService.getEmployeeById("202470");
+        Employee employeeById = employeeService.getEmployeeById(1);
         //then
         assertThat(employeeById.getEmpId()).isEqualTo("202470");
     }

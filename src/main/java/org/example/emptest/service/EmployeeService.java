@@ -1,6 +1,7 @@
 package org.example.emptest.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.emptest.dto.EmployeeCreateDto;
 import org.example.emptest.dto.EmployeeInquiryDto;
 import org.example.emptest.dto.EmployeeUpdateDto;
@@ -19,6 +20,7 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Slf4j
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
@@ -50,7 +52,9 @@ public class EmployeeService {
                 equipmentRepository.findBySeqno(employeeDto.getSeqno()));
 
         Employee savedEmp = employeeRepository.save(employee);
-        equipmentRepository.save(savedEmp.getEquipment());
+        log.info("employee saved: equipment id {} " , savedEmp.getEquipment().getSeqno());
+        Equipment savedEq = equipmentRepository.save(savedEmp.getEquipment());
+        log.info("equipment saved : employee id {} " , savedEmp.getEquipment().getEmployee().getEmpName());
         return savedEmp;
     }
 
@@ -66,14 +70,23 @@ public class EmployeeService {
     @Transactional
     public void changeEquipment(int empId, Equipment equipment) {
         Employee employee = employeeRepository.findById(empId).get();
+        Equipment befEquipment = employee.getEquipment();
         employee.changeEquipment(equipment);
-        employeeRepository.save(employee);
-        equipmentRepository.save(equipment);
+        Employee savedEmp = employeeRepository.save(employee);
+        Equipment afterEq = equipmentRepository.save(equipment);
+        Equipment beforeEq = equipmentRepository.save(befEquipment);
+        log.info("employee saved: equipment id {} " , savedEmp.getEquipment().getSeqno());
+        log.info("equipment saved : employee id {} " , equipment.getEmployee().getEmpName());
+        log.info("equipment before : employee id {} " , befEquipment.getEmployee());
     }
 
     @Transactional
     public void retireProcess(int empId) {
         Employee employee = employeeRepository.findById(empId).get();
+        Equipment equipment = employee.getEquipment();
         employee.retireProcess();
+
+        employeeRepository.save(employee);
+        equipmentRepository.save(equipment);
     }
 }

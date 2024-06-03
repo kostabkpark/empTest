@@ -51,6 +51,7 @@ public class Employee {
         System.out.println("Employee created" + employee);
         // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 2
         equipment.setEmployee(employee);
+        equipment.setCost(9999);
         System.out.println("Equipment set " + equipment);
 
         return employee;
@@ -60,10 +61,12 @@ public class Employee {
         // 기존 장비 - available
         Equipment beforeEq = this.equipment;
         beforeEq.setEmployee(null);
+        beforeEq.setCost(100);
         // 사원정보에 새로 받은 장비의 정보를 입력
         this.equipment = equipment;
         // 신규 장비 - 사원 정보
         equipment.setEmployee(this);
+        equipment.setCost(8888);
     }
 
     public void retireProcess(){

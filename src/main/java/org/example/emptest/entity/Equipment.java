@@ -17,5 +17,6 @@ public class Equipment {
     private int cost;
     // 양방향 일대일 관계 설정
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "equipment")
+    //, cascade = CascadeType.PERSIST)
     private Employee employee;
 }

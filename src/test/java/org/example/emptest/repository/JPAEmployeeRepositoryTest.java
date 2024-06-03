@@ -49,10 +49,10 @@ class JPAEmployeeRepositoryTest {
     @Test
     void 사원정보저장() {
         //given
-        Employee employee = new Employee("202471", "test", "test", EmpType.A, "2024-05-24", 100L);
+        Employee employee = new Employee(1, "test", null, EmpType.A, "2024-05-24", 100L, null);
         //when
         Employee saved = employeeRepository.save(employee);
-        Employee byId = employeeRepository.findById("202471").get();
+        Employee byId = employeeRepository.findById(1).get();
         //then
         assertThat(byId.getEmpId()).isEqualTo(saved.getEmpId());
     }

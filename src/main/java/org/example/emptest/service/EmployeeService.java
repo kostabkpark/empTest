@@ -3,10 +3,8 @@ package org.example.emptest.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.emptest.dto.EmployeeCreateDto;
-import org.example.emptest.dto.EmployeeInquiryDto;
+import org.example.emptest.dto.EmployeeSearchCond;
 import org.example.emptest.dto.EmployeeUpdateDto;
-import org.example.emptest.entity.Department;
-import org.example.emptest.entity.EmpType;
 import org.example.emptest.entity.Employee;
 import org.example.emptest.entity.Equipment;
 import org.example.emptest.repository.DepartmentRepository;
@@ -32,6 +30,10 @@ public class EmployeeService {
 
     public Employee getEmployeeById(int empId) {
         return employeeRepository.findById(empId).get();
+    }
+
+    public List<Employee> getByDeptAndEmpTypeAndSalary(EmployeeSearchCond searchCond) {
+        return employeeRepository.dynamicSearch(searchCond);
     }
 
     @Transactional

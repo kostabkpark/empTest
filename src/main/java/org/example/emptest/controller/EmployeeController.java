@@ -3,8 +3,8 @@ package org.example.emptest.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.emptest.dto.EmployeeCreateDto;
 import org.example.emptest.dto.EmployeeInquiryDto;
+import org.example.emptest.dto.EmployeeSearchCond;
 import org.example.emptest.dto.EmployeeUpdateDto;
-import org.example.emptest.entity.Department;
 import org.example.emptest.entity.EmpType;
 import org.example.emptest.entity.Employee;
 import org.example.emptest.service.DepartmentService;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -37,6 +35,15 @@ public class EmployeeController {
     @GetMapping("/employees/{empId}")
     public Employee getEmployeeById(@PathVariable int empId) {
         return employeeService.getEmployeeById(empId);
+    }
+
+    @GetMapping("/employee/search")
+    public String employeeSearch(Model model) {
+        EmployeeSearchCond searchCond = new EmployeeSearchCond();
+        model.addAttribute("employee", searchCond);
+        model.addAttribute("deptList", departmentService.getAllDepartments());
+        model.addAttribute("empTypes", EmpType.values());
+        return "employee/employeeSearch";
     }
 
     @GetMapping("/employee/add")

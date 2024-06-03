@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>사원정보 검색</h1>
+<!--   <p th:text="${name}"></p>-->
+   <hr>
+   <form th:action="@{/employee/search}" method="get" th:object="${employee}">
+       <table>
+           <tr>
+               <td><label for="deptId">부서코드</label></td>
+               <td><select th:field="*{deptId}">
+                   <option value="0">부서코드를 선택해주세요</option>
+                   <option th:each="dept:${deptList}" th:value="${dept.deptId}"
+                           th:text="${dept.deptName}"></option>
+               </select></td>
+           </tr>
+           <tr>
+               <td><label for="empType">사원구분코드</label>
+               </td>
+               <td><select th:field="*{empType}">
+                   <option value="">사원구분코드를 선택해주세요</option>
+                   <option th:each="type:${empTypes}" th:value="${type}"
+                           th:text="${type.getDescription()}"></option>
+               </select></td>
+           </tr>
+           <tr>
+               <td> <label for="salary">연봉</label>
+               </td>
+               <td><input type="number" step="100" th:field="*{salary}" placeholder="급여를 입력하세요"></td>
+               <td><button type="submit">검색</button></td>
+           </tr>
+       </table>
+   </form>
+   <ul>
+       <li></li>
+   </ul>
+
+   <hr>
+   <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+</body>
+</html>

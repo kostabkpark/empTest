@@ -8,7 +8,7 @@ import org.example.emptest.entity.EmpType;
  */
 @Data
 public class EmployeeCreateDto {
-    private String empId;
+    private int empId;
     private String empName;
     private int deptId;
     private EmpType empType;

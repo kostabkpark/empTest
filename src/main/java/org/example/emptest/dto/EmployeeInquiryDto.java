@@ -2,6 +2,7 @@ package org.example.emptest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 직원정보 조회는 모든 부서에서 할 수 있으며, 이 때 HR 부서에서 볼 수 있는 정보와
@@ -10,6 +11,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class EmployeeInquiryDto {
     private String empName;
     private String deptName;

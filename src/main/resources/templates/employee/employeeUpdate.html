@@ -11,17 +11,17 @@
    <form th:action method="post" th:object="${employee}">
        <table>
            <tr>
-               <td><label for="empName">이름</label></td>
+               <td>이름></td>
                <td><input type="text" th:field="*{empName}" readonly></td>
            </tr>
            <tr>
-               <td><label for="deptName">부서명</label></td>
+               <td>부서명</td>
                <td><input type="text" th:field="*{deptName}" readonly></td>
            </tr>
            <tr>
                <td><label for="seqno">장비일련번호</label></td>
                <td>
-                   <select th:field="*{seqno}">
+                   <select th:filed="*{seqno}">
                        <option value="">장비일련번호 선택</option>
                        <option th:each="eqmt:${eqmtList}" th:value="${eqmt.seqno}"
                                th:text="${eqmt.seqno}"></option>

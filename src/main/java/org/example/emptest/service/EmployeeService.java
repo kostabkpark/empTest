@@ -28,12 +28,12 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeById(String empId) {
+    public Employee getEmployeeById(int empId) {
         return employeeRepository.findById(empId).get();
     }
 
     @Transactional
-    public void deleteEmployeeById(String empId) {
+    public void deleteEmployeeById(int empId) {
         employeeRepository.deleteById(empId);
     }
 
@@ -50,6 +50,7 @@ public class EmployeeService {
                 equipmentRepository.findBySeqno(employeeDto.getSeqno()));
 
         Employee savedEmp = employeeRepository.save(employee);
+        equipmentRepository.save(savedEmp.getEquipment());
         return savedEmp;
     }
 
@@ -63,13 +64,15 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void changeEquipment(String empId, Equipment equipment) {
+    public void changeEquipment(int empId, Equipment equipment) {
         Employee employee = employeeRepository.findById(empId).get();
         employee.changeEquipment(equipment);
+        employeeRepository.save(employee);
+        equipmentRepository.save(equipment);
     }
 
     @Transactional
-    public void retireProcess(String empId) {
+    public void retireProcess(int empId) {
         Employee employee = employeeRepository.findById(empId).get();
         employee.retireProcess();
     }

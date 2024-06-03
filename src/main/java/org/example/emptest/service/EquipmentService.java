@@ -18,6 +18,10 @@ public class EquipmentService {
         return equipmentRepository.findById(id).get();
     }
 
+    public Equipment getEquipmentBySeqno(String seqno) {
+        return equipmentRepository.findBySeqno(seqno);
+    }
+
     @Transactional
     public Equipment addEquipment(Equipment equipment) throws Exception{
         if(validateEquipment(equipment.getSeqno())) {

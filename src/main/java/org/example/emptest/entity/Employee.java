@@ -9,10 +9,12 @@ import org.example.emptest.dto.EmployeeCreateDto;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Employee {
     @Id
     @Column(name="emp_id", nullable=false, length = 6)
-    private String empId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int empId;
     @Column(name="emp_name", nullable=false, length = 20)
     private String empName;
     // 단방향 다대일 관계 설정
@@ -38,16 +40,18 @@ public class Employee {
         // 장비가 없으면 장비를 먼저 등록해야 함
         // 등록된 장비 중 사원에 할당되어 있지 않은 장비를 찾아서 사원에게 할당할 수 있음
         Employee employee = new Employee();
-        employee.setEmpId(employeeDto.getEmpId());
+       // employee.setEmpId(employeeDto.getEmpId());
         employee.setDepartment(department);
-        // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 1
-        employee.setEquipment(equipment);
         employee.setEmpName(employeeDto.getEmpName());
         employee.setEmpType(employeeDto.getEmpType());
         employee.setSalary(employeeDto.getSalary());
         employee.setJoinDate(employeeDto.getJoinDate());
+        // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 1
+        employee.setEquipment(equipment);
+        System.out.println("Employee created" + employee);
         // 객체지향적으로 양방향 탐색이 가능하게 하려면 두 entity에 모두 등록해줘야 함 - 2
         equipment.setEmployee(employee);
+        System.out.println("Equipment set " + equipment);
 
         return employee;
     }

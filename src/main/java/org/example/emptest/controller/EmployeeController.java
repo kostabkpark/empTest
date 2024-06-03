@@ -35,7 +35,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{empId}")
-    public Employee getEmployeeById(@PathVariable String empId) {
+    public Employee getEmployeeById(@PathVariable int empId) {
         return employeeService.getEmployeeById(empId);
     }
 
@@ -60,7 +60,7 @@ public class EmployeeController {
 //    }
 
     @GetMapping("/employee/update/{empId}")
-    public String empEquipmentChange(@PathVariable("empId") String empId, Model model) {
+    public String empEquipmentChange(@PathVariable("empId") int empId, Model model) {
         Employee employee = employeeService.getEmployeeById(empId);
 
         EmployeeInquiryDto employeeDto =
@@ -73,11 +73,18 @@ public class EmployeeController {
         return "employee/employeeUpdate";
     }
 
+    @PostMapping("/employee/update/{empId}")
+    public String empEquipmentChange(@PathVariable("empId") int empId,
+                                     @ModelAttribute EmployeeInquiryDto employeeDto) {
+        Employee employee = employeeService.getEmployeeById(empId);
+        employeeService.changeEquipment(empId,equipmentService.getEquipmentBySeqno(employeeDto.getSeqno()));
+        return "redirect:/";
+    }
+
     @PutMapping("/employees/{empId}")
-    public Employee updateEmployee(@PathVariable String empId, @RequestBody EmployeeUpdateDto employeeDto) {
+    public Employee updateEmployee(@PathVariable("empId") int empId, @RequestBody EmployeeUpdateDto employeeDto) {
         Employee employee = employeeService.updateEmployee(employeeDto);
         return employee;
     }
-
 
 }

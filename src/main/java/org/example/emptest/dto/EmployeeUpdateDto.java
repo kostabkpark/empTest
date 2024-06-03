@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class EmployeeUpdateDto {
-    private String empId;
+    private int empId;
     private int deptId;
     private int salary;
     private int equipId;

@@ -8,7 +8,7 @@
    <h1>사원정보 검색</h1>
 <!--   <p th:text="${name}"></p>-->
    <hr>
-   <form th:action="@{/employee/search}" method="get" th:object="${employee}">
+   <form th:action="@{/employee/search}" method="Post" th:object="${employee}">
        <table>
            <tr>
                <td><label for="deptId">부서코드</label></td>

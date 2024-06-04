@@ -16,12 +16,12 @@
 <!--           </tr>-->
            <tr>
                <td><label for="empName">이름</label></td>
-               <td><input type="text" th:field="*{empName}" placeholder="이름을 입력하세요"></td>
+               <td><input type="text" th:field="*{empName}" placeholder="이름을 입력하세요" required></td>
            </tr>
            <tr>
                <td><label for="deptId">부서코드</label></td>
-               <td><select th:field="*{deptId}">
-                   <option value="0">부서코드를 선택해주세요</option>
+               <td><select th:field="*{deptId}" required>
+                   <option value="">부서코드를 선택해주세요</option>
                    <option th:each="dept:${deptList}" th:value="${dept.deptId}"
                            th:text="${dept.deptName}"></option>
                </select></td>
@@ -29,7 +29,7 @@
            <tr>
                <td><label for="empType">사원구분코드</label>
                </td>
-               <td><select th:field="*{empType}">
+               <td><select th:field="*{empType}" required>
                    <option value="">사원구분코드를 선택해주세요</option>
                    <option th:each="type:${empTypes}" th:value="${type}"
                            th:text="${type.getDescription()}"></option>
@@ -38,12 +38,12 @@
            <tr>
                <td><label for="joinDate">입사일자</label>
                </td>
-               <td><input type="date" th:field="*{joinDate}" placeholder="입사일자를 입력하세요"></td>
+               <td><input type="date" th:field="*{joinDate}" placeholder="입사일자를 입력하세요" required></td>
            </tr>
            <tr>
                <td> <label for="salary">연봉</label>
                </td>
-               <td><input type="number" step="100" th:field="*{salary}" placeholder="급여를 입력하세요"></td>
+               <td><input type="number" th:field="*{salary}" placeholder="급여를 입력하세요" required></td>
            </tr>
            <tr>
                <td><label for="seqno">장비일련번호</label></td>

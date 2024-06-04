@@ -1,6 +1,7 @@
 package org.example.emptest.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jdt.internal.compiler.lookup.Binding;
 import org.example.emptest.dto.EmployeeCreateDto;
 import org.example.emptest.dto.EmployeeInquiryDto;
 import org.example.emptest.dto.EmployeeSearchCond;
@@ -13,6 +14,8 @@ import org.example.emptest.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +49,13 @@ public class EmployeeController {
         return "employee/employeeSearch";
     }
 
+    @PostMapping("/employee/search")
+    public String employeeSearch(@ModelAttribute EmployeeSearchCond searchCond) {
+        List<Employee> empList = employeeService.getByDeptAndEmpTypeAndSalary(searchCond);
+        log.info(empList.size() + "명입니다.");
+        return "redirect:/" ;
+    }
+
     @GetMapping("/employee/add")
     public String addEmployee(Model model) {
         model.addAttribute("employee", new EmployeeCreateDto());
@@ -55,7 +65,37 @@ public class EmployeeController {
         return "employee/employeeAdd";
     }
     @PostMapping("/employee/add")
-    public String addEmployee(@ModelAttribute EmployeeCreateDto employeeDto) {
+    public String addEmployee(
+            @Validated @ModelAttribute EmployeeCreateDto employeeDto,
+            BindingResult bindingResult
+            ) {
+
+        if(bindingResult.hasErrors()) {
+            log.info("errors = {}", bindingResult);
+            return "redirect:/error";
+        } // field 오류
+        switch (employeeDto.getEmpType()){
+            case A :
+                if(employeeDto.getSalary() > 500) {
+                    bindingResult.reject("SalaryRange", new Object[]{500,employeeDto.getSalary()},null);
+                }
+                break;
+            case C :
+                if(employeeDto.getSalary() > 1000) {
+                    bindingResult.reject("SalaryRange", new Object[]{1000,employeeDto.getSalary()},null);
+                }
+                break;
+            case B :
+                if(employeeDto.getSalary() > 10000) {
+                    bindingResult.reject("SalaryRange", new Object[]{10000,employeeDto.getSalary()},null);
+                }
+                break;
+        }
+        if(bindingResult.hasErrors()) {
+            log.info("errors = {}", bindingResult);
+            return "redirect:/error";
+        } //
+
         log.info("employeeDto: {}", employeeDto);
         employeeService.addEmployee(employeeDto);
         return "redirect:/";

@@ -77,17 +77,17 @@ public class EmployeeController {
         switch (employeeDto.getEmpType()){
             case A :
                 if(employeeDto.getSalary() > 500) {
-                    bindingResult.reject("SalaryRange", new Object[]{500,employeeDto.getSalary()},null);
+                    bindingResult.reject("SalaryRange", new Object[]{300,500,employeeDto.getSalary()},null);
                 }
                 break;
             case C :
                 if(employeeDto.getSalary() > 1000) {
-                    bindingResult.reject("SalaryRange", new Object[]{1000,employeeDto.getSalary()},null);
+                    bindingResult.reject("SalaryRange", new Object[]{500,1000,employeeDto.getSalary()},null);
                 }
                 break;
             case B :
                 if(employeeDto.getSalary() > 10000) {
-                    bindingResult.reject("SalaryRange", new Object[]{10000,employeeDto.getSalary()},null);
+                    bindingResult.reject("SalaryRange", new Object[]{1000,10000,employeeDto.getSalary()},"급여 입력 오류");
                 }
                 break;
         }

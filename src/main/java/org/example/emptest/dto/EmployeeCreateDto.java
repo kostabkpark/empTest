@@ -13,13 +13,15 @@ import org.hibernate.validator.constraints.Range;
  */
 @Data
 public class EmployeeCreateDto {
-    @NotBlank(message = "직원의 이름은 반드시 입력해야 합니다.")
+    @NotBlank
+            //(message = "직원의 이름은 반드시 입력해야 합니다.")
     private String empName;
     @NotNull
     private Integer deptId;
     @NotNull
     private EmpType empType;
-    @Range(min=300, max=10000, message = "직원의 급여는 300에서 10000 사이여야 합니다.")
+    @Range(min=300, max=10000)
+    //, message = "직원의 급여는 300에서 10000 사이여야 합니다.")
     private Long salary;
     @NotEmpty
     private String joinDate;

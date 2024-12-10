@@ -3,7 +3,7 @@
 //        queryDslVersion = "5.0.0"
 //    }
 //}
-//   
+//  ddd 
 
 plugins {
     id 'java'
